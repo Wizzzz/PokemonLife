@@ -1,7 +1,7 @@
 # PokemonLife
 Just a landing page for a game
 
-Pour lancer le serveur : 
+Pour lancer le serveur : <br/>
 cd pokemonlife<br/>
 docker-compose build && docker-compose up<br/>
 
