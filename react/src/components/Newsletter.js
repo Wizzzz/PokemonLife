@@ -11,49 +11,59 @@ class Newsletter extends React.Component {
     }
 
     myChangeHandler = (event) => {
-        this.setState({ 
-            email: event.target.value 
+        this.setState({
+            email: event.target.value
         })
     }
-    
+
+    validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
     postEmail() {
-        axios({
-            method: 'POST',
-            url: 'http://localhost:8080/addemail',
-            data: {
-                EMAIL: this.state.email
-            }
-        }).then(() => {
-            this.setState({
-                tmp: "Merci d'avoir rejoins notre newsletter !"
+        if (this.validateEmail(this.state.email) === true && this.state.email !== "") {
+            axios({
+                method: 'POST',
+                url: 'http://localhost:8080/addemail',
+                data: {
+                    EMAIL: this.state.email
+                }
+            }).then(() => {
+                this.setState({
+                    tmp: "Merci d'avoir rejoins notre newsletter !",
+                    email: ""
+                })
+            }).catch(() => {
+                this.setState({
+                    tmp: "Votre adresse est déjà enrengistré à notre base de données"
+                })
             })
-        }).catch(() => {
+        }
+        else {
             this.setState({
-                tmp: "Votre adresse est déjà enrengistré à notre base de données"
+                tmp: "Entrez un mail valide !"
             })
-        })
-        this.setState({
-            email: ""
-        })
+        }
     }
     render() {
         return (
             <div>
                 <section id="newsletter">
                     <div className="container wow fadeIn ">
-                            <div className="section-header">
-                                <h3 className="cta-title">Newsletter</h3>
-                                <p className="cta-text">Notre projet vous intéresse ? Inscrivez-vous à notre newsletter !</p>
+                        <div className="section-header">
+                            <h3 className="cta-title">Newsletter</h3>
+                            <p className="cta-text">Notre projet vous intéresse ? Inscrivez-vous à notre newsletter !</p>
+                        </div>
+                        <div className="input-group mb-3 cent">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon1">@</span>
+                                <input className="form-control" value={this.state.email} onChange={this.myChangeHandler} type="email" placeholder="Votre mail"></input>
                             </div>
-                            <div className="input-group mb-3 cent">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon1">@</span>
-                                    <input className="form-control" value={this.state.email} onChange={this.myChangeHandler} type="email" placeholder="Votre mail"></input>
-                                </div>
-                                <br/>
-                            <button className="btn btn-light input cent" onClick={() => this.postEmail()} type="button">S'inscrire</button>
+                            <br />
+                            <button className="btn btn-light input cent" onClick={() => this.postEmail()} type="button">Envoi</button>
                             <p className="cta-text"> {this.state.tmp}</p>
-                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
