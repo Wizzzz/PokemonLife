@@ -32,6 +32,9 @@ class Newsletter extends React.Component {
                 tmp: "Votre adresse est déjà enrengistré à notre base de données"
             })
         })
+        this.setState({
+            email: ""
+        })
     }
     render() {
         return (
@@ -48,7 +51,7 @@ class Newsletter extends React.Component {
                                     <input className="form-control" value={this.state.email} onChange={this.myChangeHandler} type="email" placeholder="Votre mail"></input>
                                 </div>
                                 <br/>
-                            <button className="btn btn-light input cent" onClick={() => this.postEmail()} type="button">Envoi</button>
+                            <button className="btn btn-light input cent" onClick={() => this.postEmail()} type="button">S'inscrire</button>
                             <p className="cta-text"> {this.state.tmp}</p>
                             </div>
                     </div>
