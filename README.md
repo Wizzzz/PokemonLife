@@ -1,13 +1,11 @@
 # PokemonLife
 Just a landing page for a game
 
-Pour lancer le projet :
-
 Pour lancer le serveur : 
-cd pokemonlife
-docker-compose build && docker-compose up
+cd pokemonlife<br/>
+docker-compose build && docker-compose up<br/>
 
-Pour lancer React
-cd pokemonlife
-cd react
-npm start
+Pour lancer React :<br/>
+cd pokemonlife<br/>
+cd react<br/>
+npm start<br/>
