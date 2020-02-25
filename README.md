@@ -8,4 +8,5 @@ docker-compose build && docker-compose up<br/>
 Pour lancer React :<br/>
 cd pokemonlife<br/>
 cd react<br/>
+npm install<br/>
 npm start<br/>
