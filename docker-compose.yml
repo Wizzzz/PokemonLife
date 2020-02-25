@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    build: ./mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - back-tier
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=Azerty123
+      - MYSQL_DATABASE=Pokemonlife
+    volumes:
+      - db-data:/var/lib/azerty/data
+
+  server:
+    build: ./server
+    ports: 
+      - "8080:8080"
+    links:
+      - db:pokelife
+    networks:
+      - back-tier
+      - front-tier
+    restart: always
+
+networks:
+  front-tier:
+  back-tier:
+
+volumes:
+  db-data:
