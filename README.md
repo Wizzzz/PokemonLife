@@ -10,3 +10,4 @@ cd pokemonlife<br/>
 cd react<br/>
 npm install<br/>
 npm start<br/>
+test
